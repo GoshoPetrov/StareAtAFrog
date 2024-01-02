@@ -11,7 +11,7 @@ function preload(){
 
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(640, 480);
   currentScene = "startScene"
 }
 
