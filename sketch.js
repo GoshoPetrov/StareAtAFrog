@@ -5,14 +5,30 @@ let currentScene;
 let score = 0;
 let bestScore = 0;
 
+let song2;
+
+let started = false;  
+
+let soundSlider;
+
+let sliderX = 0
+let sliderY = 300
+
 function preload(){
   frog = loadImage("frog.jpg")
+  song1 = loadSound('frogcave.mp3');
+  song2 = loadSound("autisIsland.ogg");
 }
 
 
 function setup() {
-  createCanvas(640, 480);
+  var w = window.innerWidth;
+  var h = window.innerHeight; 
+  
+  createCanvas(w, h);
   currentScene = "startScene"
+  soundSlider = createSlider(0, 255);
+
 }
 
 function draw() {
@@ -28,7 +44,9 @@ function draw() {
     endScene()
   }
   
-  
+  soundSlider.size(200);
+  soundSlider.position(sliderX, sliderY);
+  soundSlider.size(200);
 
 }
 
@@ -37,14 +55,28 @@ function clearMouse() {
 }
 
 function startScene(){
-  if(mouseIsPressed){
+  rect(0, height - 100, 265, height + 220)
+  textSize(50);
+  text("PLAY", 50, height - 40)
+  if(mouseIsPressed && mouseX < 265 && mouseY > 400){
     currentScene = "playScene"
     clearMouse()
+
+    if (!started) {
+      started = true;
+      song2.play();
+
+    }
+
+    sliderX = 10000;
+    sliderY = 10000;
   }
   else{
-    image(frog, 0, 0)
+    //image(frog, 0, 0)
     frog.resize(400, 400)
   }
+
+  song2.setVolume(soundSlider.value()); 
 }
 
 function playScene(){
