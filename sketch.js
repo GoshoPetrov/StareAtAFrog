@@ -11,8 +11,8 @@ let started = false;
 
 let soundSlider;
 
-let sliderX = 0
-let sliderY = 300
+let sliderX
+let sliderY
 
 function preload(){
   frog = loadImage("frog.jpg")
@@ -22,11 +22,13 @@ function preload(){
 
 
 function setup() {
-  var w = window.innerWidth;
-  var h = window.innerHeight; 
+  //var w = window.innerWidth;
+  //var h = window.innerHeight; 
   
-  createCanvas(w, h);
+  createCanvas(1000, 2100);
   currentScene = "startScene"
+  sliderX = width/2
+  sliderY = height/2
   soundSlider = createSlider(0, 255);
 
 }
@@ -44,9 +46,9 @@ function draw() {
     endScene()
   }
   
-  soundSlider.size(200);
   soundSlider.position(sliderX, sliderY);
-  soundSlider.size(200);
+  soundSlider.size(400);
+
 
 }
 
@@ -55,18 +57,25 @@ function clearMouse() {
 }
 
 function startScene(){
-  rect(0, height - 100, 265, height + 220)
-  textSize(50);
-  text("PLAY", 50, height - 40)
-  if(mouseIsPressed && mouseX < 265 && mouseY > 400){
-    currentScene = "playScene"
-    clearMouse()
+  soundSlider.position(sliderX, sliderY);
+  rect(width/2 - 250, height - 400, 450, 200, 40)
+  textSize(80);
+  text("PLAY", width/2 - 130, height - 270)
+  textSize(60);
+  text("Volume:", 30, height - 480)
 
-    if (!started) {
+  if(mouseIsPressed){
+    if (started == false) {
       started = true;
       song2.play();
-
+  
     }
+  }
+  
+
+  if(mouseIsPressed && mouseX < width/2 + 170 && mouseY > height - 400){
+    currentScene = "playScene"
+    clearMouse()
 
     sliderX = 10000;
     sliderY = 10000;
@@ -74,6 +83,9 @@ function startScene(){
   else{
     //image(frog, 0, 0)
     frog.resize(400, 400)
+    sliderX = width/2 - 210
+    sliderY = height - 500
+    
   }
 
   song2.setVolume(soundSlider.value()); 
