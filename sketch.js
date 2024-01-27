@@ -14,8 +14,11 @@ let soundSlider;
 let sliderX
 let sliderY
 
+let youFool
+
 function preload(){
   frog = loadImage("frog.jpg")
+  youFool = loadImage("YouFool.webp")
   song1 = loadSound('frogcave.mp3');
   song2 = loadSound("autisIsland.ogg");
 }
@@ -45,6 +48,9 @@ function draw() {
   else if(currentScene == "endScene"){
     endScene()
   }
+  else if(currentScene == "winGame"){
+    winGame()
+  }
   
   soundSlider.position(sliderX, sliderY);
   soundSlider.size(400);
@@ -57,6 +63,20 @@ function clearMouse() {
 }
 
 function startScene(){
+  textSize(100)
+  text(`STARE AT A FROG: 
+  THE GAME`, width/2 - 500, 300)
+  textSize(60)
+  text(`Rule 1: 
+  You have to stare at the frog`, width/2 - 500, 600)
+  text(`Rule 2: 
+  Stare at frog as long as possible`,  width/2 - 500, 800)
+  text(`Rule 3:
+  If you beat the score of 6900 you 
+  win a price`, width/2 - 500, 1000)
+  text(`Rule 4:
+  Have fun!`, width/2 - 500, 1300)
+
   soundSlider.position(sliderX, sliderY);
   rect(width/2 - 250, height - 400, 450, 200, 40)
   textSize(80);
@@ -93,7 +113,7 @@ function startScene(){
 
 function playScene(){
   
-  if (mouseIsPressed && mouseX < 200 && mouseY > 400){
+  if (mouseIsPressed && mouseX < width/2 + 170 && mouseY > height - 400){
     currentScene = "endScene"
     clearMouse()
   }
@@ -102,13 +122,19 @@ function playScene(){
     score += 1;
     textSize(50)
     text(`score: ${score}`, 10, 50)
-    text("i give up", 100, 450)
+    textSize(100)
+    text("i give up", width/2 - 130, height - 270)
+
+    if(score >= 100){
+      winGame()
+    }
   }
 }
 
 
 function endScene(){
   print('endScene')
+
   if(mouseIsPressed){
     currentScene = "startScene"
     clearMouse()
@@ -116,14 +142,24 @@ function endScene(){
     score = 0
   }
   else{
+    textSize(60)
     if(bestScore < score){
       text("Yay you beated your previous score", 0, 100)
       text(`New best score: ${score}`, 100, 200)
     }
     else{
-      text(`You FOOL why not try stare for more than your previous score wich is ${score}`, 100, 100)
+      image(youFool, width/2 - 450, height/2 - 400);
+
+      youFool.resize(900, 900)
+      text(`  You FOOL why not try stare for 
+    more than your previous 
+    score wich is ${score}`, 100, 100)
     }
 
-    text("Play again?", 100, 400)
+    text("Play again?", width/2 - 130, height - 270)
   }
+}
+
+function winGame(){
+  text("YOU WOn", 0, 0);
 }
