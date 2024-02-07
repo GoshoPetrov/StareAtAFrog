@@ -14,7 +14,12 @@ let soundSlider;
 let sliderX
 let sliderY
 
+<<<<<<< Updated upstream
 let youFool
+=======
+let YesButton;
+let NoButton;
+>>>>>>> Stashed changes
 
 function preload(){
   frog = loadImage("frog.jpg")
@@ -113,7 +118,11 @@ function startScene(){
 
 function playScene(){
   
+<<<<<<< Updated upstream
   if (mouseIsPressed && mouseX < width/2 + 170 && mouseY > height - 400){
+=======
+  if (mouseIsPressed && mouseX < width/2 + 200 && mouseY > height - 450){
+>>>>>>> Stashed changes
     currentScene = "endScene"
     clearMouse()
   }
@@ -122,12 +131,17 @@ function playScene(){
     score += 1;
     textSize(50)
     text(`score: ${score}`, 10, 50)
+<<<<<<< Updated upstream
     textSize(100)
     text("i give up", width/2 - 130, height - 270)
 
     if(score >= 100){
       winGame()
     }
+=======
+    textSize(100);
+    text("i give up", width/2 - 220, height - 270)
+>>>>>>> Stashed changes
   }
 }
 
