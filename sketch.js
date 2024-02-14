@@ -14,16 +14,12 @@ let soundSlider;
 let sliderX
 let sliderY
 
-<<<<<<< Updated upstream
-let youFool
-=======
-let YesButton;
-let NoButton;
->>>>>>> Stashed changes
+let happyAhh
 
 function preload(){
-  frog = loadImage("frog.jpg")
+  frog = loadImage("FrogForGame.PNG")
   youFool = loadImage("YouFool.webp")
+  happyAhh = loadImage("HappyAhh.jpg")
   song1 = loadSound('frogcave.mp3');
   song2 = loadSound("autisIsland.ogg");
 }
@@ -117,31 +113,29 @@ function startScene(){
 }
 
 function playScene(){
+
+  frog.resize(1000, 1000)
+  image(frog, width/2 - 500, height/2 - 900)
   
-<<<<<<< Updated upstream
-  if (mouseIsPressed && mouseX < width/2 + 170 && mouseY > height - 400){
-=======
   if (mouseIsPressed && mouseX < width/2 + 200 && mouseY > height - 450){
->>>>>>> Stashed changes
+
     currentScene = "endScene"
     clearMouse()
   }
   else{
-    ellipse(500, 500, 200)
+    //ellipse(500, 500, 200)
     score += 1;
     textSize(50)
     text(`score: ${score}`, 10, 50)
-<<<<<<< Updated upstream
     textSize(100)
-    text("i give up", width/2 - 130, height - 270)
+    text("i give up", width/2 - 220, height - 270)
 
     if(score >= 100){
-      winGame()
+      currentScene = "winGame"
     }
-=======
-    textSize(100);
-    text("i give up", width/2 - 220, height - 270)
->>>>>>> Stashed changes
+
+    //textSize(100);
+    //text("i give up", width/2 - 220, height - 270)
   }
 }
 
@@ -175,5 +169,12 @@ function endScene(){
 }
 
 function winGame(){
-  text("YOU WOn", 0, 0);
+  textSize(100)
+  text("YOU WOn", 100, 100);
+
+  textSize(90)
+  text("Go black to main menu", 10, height - 400)
+
+  happyAhh.resize(900, 900)
+  image(happyAhh, width/2 - 450, height/2 - 600)
 }
