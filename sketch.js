@@ -88,7 +88,7 @@ function startScene(){
   if(mouseIsPressed){
     if (started == false) {
       started = true;
-      song2.play();
+      song1.play();
   
     }
   }
@@ -109,7 +109,7 @@ function startScene(){
     
   }
 
-  song2.setVolume(soundSlider.value()); 
+  song1.setVolume(soundSlider.value()); 
 }
 
 function playScene(){
@@ -169,6 +169,11 @@ function endScene(){
 }
 
 function winGame(){
+  if(mouseIsPressed){
+    currentScene = "startScene"
+    score = 0;
+  }
+
   textSize(100)
   text("YOU WOn", 100, 100);
 
